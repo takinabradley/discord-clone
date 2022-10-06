@@ -34,4 +34,5 @@
 .server-icon:hover {
   border-radius: 15px;
   transition: all 200ms ease-in-out;
+  background-color: rgb(59, 165, 93);
 }
