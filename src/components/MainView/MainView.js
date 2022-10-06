@@ -8,8 +8,8 @@ import "./MainView.css";
 
 export default function MainView() {
   const [state, setState] = React.useState({
-    serverID: 0,
-    channelID: 0,
+    currentServer: 'some Server',
+    currentChannel: 0,
     servers: [
       makeNewServer('some Server'),
       makeNewServer('another Server'),
@@ -19,15 +19,15 @@ export default function MainView() {
   function changeServer(ID) {
     setState({
       ...state,
-      serverID: ID,
-      channelID: 0,
+      currentServer: ID,
+      currentChannel: 0,
     });
   }
 
   function changeChannel(ID) {
     setState({
       ...state,
-      channelID: ID,
+      currentChannel: ID,
     });
   }
 
@@ -60,17 +60,17 @@ export default function MainView() {
       <ServerSidebar
         onChangeServer={changeServer}
         onAddServer={addServer}
-        serverID={state.serverID}
+        currentServer={state.currentServer}
         serverList={state.servers}
       />
 
       <Sidebar
-        serverID={state.serverID}
+        currentServer={state.currentServer}
         onChangeChannel={changeChannel}
-        channelID={state.channelID}
+        currentChannel={state.currentChannel}
       />
 
-      <Chat channelID={state.channelID} />
+      <Chat currentChannel={state.currentChannel} />
     </div>
   );
 }
