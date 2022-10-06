@@ -1,0 +1,8 @@
+.sidebar {
+  text-align: center;
+  color: white;
+  background-color: rgb(47, 49, 54);
+  font-weight: bold;
+  width: 210px;
+  min-width: 210px;
+}

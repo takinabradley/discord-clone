@@ -1,0 +1,22 @@
+.server-icon {
+  border: 1px solid white;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  position: relative;
+}
+
+.server-icon:hover {
+  border-radius: 15px;
+}
+
+.server-icon::before {
+  content: '';
+  position: relative;
+  right: 30px;
+  top: 10px;
+  border: 2px solid white;
+  border-radius: 1px;
+  height: 100%;
+
+}

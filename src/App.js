@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import MainView from './components/MainView/MainView'
+import SettingsView from './components/SettingsView'
+import './App.css'
+
+const views = {
+  main: <MainView />,
+  settings: <SettingsView />
+}
 
 function App() {
+  const [state, setState] = React.useState({
+    viewMode: 'main',
+  })
+
+  function changeViewMode() {
+    if (state.viewMode === 'main') {
+      setState({...state, viewMode: 'settings'})
+    } else {
+      setState({...state, viewMode: 'main'})
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App' /* onClick={changeViewMode} */ >
+      {views[state.viewMode]}
     </div>
-  );
+  )
 }
 
 export default App;

@@ -1,0 +1,15 @@
+.server-sidebar {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  background-color: rgb(32, 34, 37);
+  width: 64px;
+  min-width: 65px;
+  word-wrap: break-word;
+
+  display: flex;
+  flex-direction: column;
+  padding-top: 15px;
+  gap: 10px;
+  align-items: center;
+}
