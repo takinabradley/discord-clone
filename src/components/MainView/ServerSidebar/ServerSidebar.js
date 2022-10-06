@@ -7,8 +7,7 @@ export default function ServerSidebar({serverList, currentServer, onChangeServer
 
   const serverIcons = serverList.map((server, index) => (
     <ServerIcon img={image} name={server.name} key={index} onClick={() => onChangeServer(server.name)}
-      isSelected={currentServer === server.name ? true : false}
-    />
+      isSelected={currentServer === server.name ? true : false} />
   ))
 
   return (
