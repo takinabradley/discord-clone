@@ -4,6 +4,7 @@ import ServerSidebar from "./ServerSidebar/ServerSidebar";
 import Sidebar from "./Sidebar/Sidebar";
 /* import Channels from "./Sidebar/Channels";
 import Friends from "./Sidebar/Friends"; */
+import defaultImg from '../../images/defaultImg.png'
 import "./MainView.css";
 
 export default function MainView() {
@@ -11,8 +12,8 @@ export default function MainView() {
     currentServer: 'some Server',
     currentChannel: 0,
     servers: [
-      makeNewServer('some Server'),
-      makeNewServer('another Server'),
+      makeNewServer('some Server', defaultImg),
+      makeNewServer('another Server', defaultImg),
     ],
   });
 
@@ -31,9 +32,9 @@ export default function MainView() {
     });
   }
 
-  function makeNewServer(name) {
+  function makeNewServer(name, img) {
     return {
-      img: '',
+      img: img,
       name,
       channels: [
         {
@@ -50,7 +51,7 @@ export default function MainView() {
       ...state,
       servers: [
         ...state.servers,
-        makeNewServer(name)
+        makeNewServer(name, defaultImg)
       ]
     });
   }
@@ -65,7 +66,7 @@ export default function MainView() {
       />
 
       <Sidebar
-        currentServer={state.currentServer}
+        currentServer={state.servers.find(server => state.currentServer === server.name)}
         onChangeChannel={changeChannel}
         currentChannel={state.currentChannel}
       />
