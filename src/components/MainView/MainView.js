@@ -2,20 +2,18 @@ import React from "react";
 import Chat from "./Chat";
 import ServerSidebar from "./ServerSidebar/ServerSidebar";
 import Sidebar from "./Sidebar/Sidebar";
-/* import Channels from "./Sidebar/Channels";
-import Friends from "./Sidebar/Friends"; */
-import defaultImg from '../../images/defaultImg.png'
 import "./MainView.css";
+import Users from '../../scripts/users.js'
+import Servers from '../../scripts/servers.js'
 
-export default function MainView() {
+
+export default function MainView({ user, addServer }) {
   const [state, setState] = React.useState({
-    currentServer: 'some Server',
+    currentServer: user.servers[0],
     currentChannel: 0,
-    servers: [
-      makeNewServer('some Server', defaultImg),
-      makeNewServer('another Server', defaultImg),
-    ],
   });
+
+  const servers =  user.servers.map(serverID => Servers.fetch(serverID))
 
   function changeServer(ID) {
     setState({
@@ -32,41 +30,17 @@ export default function MainView() {
     });
   }
 
-  function makeNewServer(name, img) {
-    return {
-      img: img,
-      name,
-      channels: [
-        {
-          name: 'General',
-          type: 'text',
-          history: []
-        }
-      ]
-    }
-  }
-
-  function addServer(name) {
-    setState({
-      ...state,
-      servers: [
-        ...state.servers,
-        makeNewServer(name, defaultImg)
-      ]
-    });
-  }
-
   return (
     <div className="main-view">
       <ServerSidebar
         onChangeServer={changeServer}
         onAddServer={addServer}
         currentServer={state.currentServer}
-        serverList={state.servers}
+        serverList={servers}
       />
 
       <Sidebar
-        currentServer={state.servers.find(server => state.currentServer === server.name)}
+        currentServer={servers.find(server => state.currentServer === server.id)}
         onChangeChannel={changeChannel}
         currentChannel={state.currentChannel}
       />

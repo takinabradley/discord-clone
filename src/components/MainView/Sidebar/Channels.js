@@ -3,8 +3,9 @@ import ChannelLink from './ChannelLink'
 
 export default function Channels({ currentServer }) {
   
-  const channelLinks = currentServer.channels.map(channel =>
-    <ChannelLink channelName={channel.name} channelType={channel.type} />
+  const channelLinks = currentServer.channels.map( channel =>
+    <ChannelLink channelName={channel.name} channelType={channel.type}
+      key={channel.id} />
   )
 
   return (
