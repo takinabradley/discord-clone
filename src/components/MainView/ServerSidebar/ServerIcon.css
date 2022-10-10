@@ -3,30 +3,30 @@
   flex-direction: row;
   flex-wrap: nowrap;
   width: 100%;
-  gap: 6px;
+  gap: 4px;
   position: relative;
 }
 
 .server-icon {
-  width: 45px;
-  height: 45px;
+  width: 52px;
+  height: 52px;
   border-radius: 25px;
   background-color: rgb(54, 57, 63);
 }
 
 .select-indicator {
-  border: 2px solid transparent;
+  border: 3px solid transparent;
   height: 10px;
-  border-radius: 2px;
+  border-radius: 5px;
   justify-self: flex-start;
   position: relative;
-  top: 5px;
-  right: 1px;
+  top: 6px;
+  right: 2px;
   transition: all 250ms ease-in-out;
 }
 
 .select-indicator.selected {
-  border: 2px solid white;
+  border: 3px solid white;
   height: 30px;
   transition: all 250ms ease-in-out;
 }
