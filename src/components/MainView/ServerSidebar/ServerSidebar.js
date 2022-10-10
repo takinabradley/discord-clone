@@ -13,7 +13,8 @@ export default function ServerSidebar({serverList, currentServer, onChangeServer
   return (
     <nav className="server-sidebar">
       {serverIcons}
-      <ServerIcon onClick={() => onAddServer(serverIcons.length + 1, defaultIcon)} img={addIcon} name='add-server'>Add</ServerIcon>
+      <ServerIcon onClick={() => onAddServer(serverIcons.length + 1, defaultIcon)}
+        img={addIcon} name='add-server' className='server-add'>Add</ServerIcon>
     </nav>
   )
 }

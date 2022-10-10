@@ -12,26 +12,41 @@
   height: 52px;
   border-radius: 25px;
   background-color: rgb(54, 57, 63);
+  transition: all 200ms ease-in-out;
 }
 
+.server-icon:hover {
+  border-radius: 15px;
+  transition: all 200ms ease-in-out;
+}
+/*selection indicator effects*/
 .select-indicator {
   border: 3px solid transparent;
   height: 10px;
   border-radius: 5px;
   justify-self: flex-start;
   position: relative;
-  top: 6px;
+  top: 15px;
   right: 2px;
-  transition: all 250ms ease-in-out;
+
 }
 
 .select-indicator.selected {
   border: 3px solid white;
   height: 30px;
-  transition: all 250ms ease-in-out;
+  top: 6px;
+  transition: all 250ms ease-in;
 }
 
-.server-icon:hover {
+.icon-wrapper:hover .select-indicator:not(.select-indicator.selected, .server-add:hover .select-indicator) {
+  border: 3px solid white;
+  height: 15px;
+  transition: all 250ms ease-in;
+  top: 15px;
+}
+
+/*.server-add button color effect*/
+.server-add .server-icon:hover {
   border-radius: 15px;
   transition: all 200ms ease-in-out;
   background-color: rgb(59, 165, 93);
