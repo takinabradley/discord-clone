@@ -9,7 +9,7 @@ function Channel(name, type) {
     get name() {return name}, 
     type,
     id,
-    history: [...history]
+    get history() {return [...history]}
   })
 }
 
@@ -49,7 +49,7 @@ const Servers = (function () {
   
   function fetch(id) {
     const server = servers.find(server => server.id === id)
-    return {...server}
+    return server
   }
 
   function remove(id) {
