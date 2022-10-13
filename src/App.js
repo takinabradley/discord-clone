@@ -5,41 +5,57 @@ import './App.css'
 import Users from './scripts/users'
 import Servers from './scripts/servers'
 import defaultImg from './images/defaultImg.png'
-
 /*Set up dummy user and server apis*/
 const DefaultUser = Users.add('DefaultUser') //create default user
 const DefaultServer = Servers.add('Default', defaultImg) //create a server
 DefaultUser.addServer(DefaultServer.id) //add serverID to user's list of servers
 
-console.log('set up', DefaultUser)
-
-
 function App() {
   const [state, setState] = React.useState({
     viewMode: 'main',
     user: DefaultUser,
+    servers: DefaultUser.servers.map(serverID => Servers.fetch(serverID))
   })
 
-  const views = {
-    main: <MainView user={state.user} addServer={addServer}/>,
-    settings: <SettingsView user={state.user} addServer={addServer} />
-  }
+
 
   function addServer(name, img) {
-    const id = Servers.add(name, img).id
-    state.user.addServer(id)
+    const newServer = Servers.add(name, img)
     setState({
       ...state,
-      user: {...DefaultUser}, //allows state change without bugs by copying defaultUser every time it changes
+      user: state.user.addServer(newServer.id), 
+      servers: [...state.servers, newServer]
     })
   }
 
+  function addChannel(server, name, type) {
+    const newServer = server.addChannel(name, type)
+    if(newServer === undefined) return //server already had a channel by that name and type
+
+    const newServers = state.servers.map(server => {
+      if (server.id === newServer.id) return newServer
+      return server
+    })
+    setState({
+      ...state,
+      servers: newServers
+    })
+  }
+  
   function changeViewMode() {
     if (state.viewMode === 'main') {
       setState({...state, viewMode: 'settings'})
     } else {
       setState({...state, viewMode: 'main'})
     }
+  }
+
+  const views = {
+    main:
+      <MainView user={state.user} addServer={addServer} servers={state.servers}
+        addChannel={addChannel} />,
+    settings:
+      <SettingsView user={state.user} addServer={addServer} />
   }
 
   return (
