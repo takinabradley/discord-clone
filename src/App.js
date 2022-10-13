@@ -17,8 +17,6 @@ function App() {
     servers: DefaultUser.servers.map(serverID => Servers.fetch(serverID))
   })
 
-
-
   function addServer(name, img) {
     const newServer = Servers.add(name, img)
     setState({
@@ -52,7 +50,7 @@ function App() {
 
   const views = {
     main:
-      <MainView user={state.user} addServer={addServer} servers={state.servers}
+      <MainView addServer={addServer} servers={state.servers}
         addChannel={addChannel} />,
     settings:
       <SettingsView user={state.user} addServer={addServer} />

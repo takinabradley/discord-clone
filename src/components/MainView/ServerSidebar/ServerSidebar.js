@@ -5,7 +5,7 @@ import defaultIcon from '../../../images/defaultImg.png'
 import './ServerSidebar.css'
 export default function ServerSidebar({serverList, currentServer, onChangeServer, onAddServer}) {
 
-  const serverIcons = serverList.map((server, index) => (
+  const serverIcons = serverList.map(server => (
     <ServerIcon img={server.img} name={server.name} key={server.id} onClick={() => onChangeServer(server.id)}
       isSelected={currentServer === server.id ? true : false} />
   ))

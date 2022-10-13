@@ -1,26 +1,18 @@
-import React, {useMemo} from "react";
+import React from "react";
 import Chat from "./Chat";
 import ServerSidebar from "./ServerSidebar/ServerSidebar";
 import Sidebar from "./Sidebar/Sidebar";
 import "./MainView.css";
-import Users from '../../scripts/users.js'
-import Servers from '../../scripts/servers.js'
 
 
-export default function MainView({ user, addServer, servers, addChannel }) {
+export default function MainView({ addServer, servers, addChannel }) {
   const [state, setState] = React.useState({              
-    currentServer: user.servers[0],
+    currentServer: servers[0].id,
     currentChannel: 0,
   });
 
-  if (user === null) return
-  
-  /* const servers = user.servers.map(serverID => Servers.fetch(serverID)) 
-  console.log('user', state.user) */
-
   function changeServer(ID) {
     setState({
-      ...state,
       currentServer: ID,
       currentChannel: 0,
     });
@@ -32,10 +24,6 @@ export default function MainView({ user, addServer, servers, addChannel }) {
       currentChannel: ID,
     });
   }
-
-/*   function addChannel() {
-    const server = servers.find(server => state.currentServer === server.id).addChannel('new', 'text')
-  } */
 
   return (
     <div className="main-view">
