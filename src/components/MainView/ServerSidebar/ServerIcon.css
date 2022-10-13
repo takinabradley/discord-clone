@@ -19,6 +19,10 @@
   border-radius: 15px;
   transition: all 200ms ease-in-out;
 }
+
+.icon-wrapper .select-indicator.selected + img {
+  border-radius: 15px;
+}
 /*selection indicator effects*/
 .select-indicator {
   border: 3px solid transparent;
@@ -50,4 +54,16 @@
   border-radius: 15px;
   transition: all 200ms ease-in-out;
   background-color: rgb(59, 165, 93);
+}
+
+/*server-freinds button effects */
+.server-friends .server-icon:hover {
+  border-radius: 15px;
+    transition: all 200ms ease-in-out;
+    background-color: rgb(88, 101, 242);
+}
+
+.server-friends .select-indicator.selected + img{
+  background-color: rgb(88, 101, 242);
+  border-radius: 15px;
 }

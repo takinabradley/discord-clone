@@ -35,7 +35,7 @@ export default function MainView({ addServer, servers, addChannel }) {
       />
 
       <Sidebar
-        currentServer={servers.find(server => state.currentServer === server.id)}
+        currentServer={servers.find(server => state.currentServer === server.id) || 'friends'}
         onChangeChannel={changeChannel}
         currentChannel={state.currentChannel}
         addChannel={addChannel}
