@@ -9,7 +9,7 @@ export default function Sidebar({currentServer, currentChannel, onChangeChannel,
     <nav className="sidebar">
       {
         (currentServer === 'friends') ?
-          <Friends /> : <Channels currentServer={currentServer} addChannel={addChannel} /> 
+          <Friends /> : <Channels currentServer={currentServer} addChannel={addChannel} currentChannel={currentChannel} changeChannel={onChangeChannel} /> 
       }
     </nav>
   )

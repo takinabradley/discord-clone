@@ -2,11 +2,12 @@ import React from 'react'
 import ChannelLink from './ChannelLink'
 import './Channels.css'
 
-export default function Channels({ currentServer, addChannel }) {
+export default function Channels({ currentServer, addChannel, currentChannel, changeChannel }) {
   if(!currentServer) return
-  const channelLinks = currentServer.channels.map( channel =>
+  const channelLinks = currentServer.channels.map( (channel, index) =>
     <ChannelLink channelName={channel.name} channelType={channel.type}
-      key={channel.id} />
+      key={channel.id} onClick={() => changeChannel(index)}
+      isSelected={currentChannel === index ? true : false} />
   )
 
   return (

@@ -19,6 +19,7 @@ export default function MainView({ addServer, servers, addChannel }) {
   }
 
   function changeChannel(ID) {
+    console.log(ID)
     setState({
       ...state,
       currentChannel: ID,
@@ -41,7 +42,7 @@ export default function MainView({ addServer, servers, addChannel }) {
         addChannel={addChannel}
       />
 
-      <Chat currentChannel={state.currentChannel} />
+      <Chat currentServer={servers.find(server => state.currentServer === server.id) || 'friends'} currentChannel={state.currentChannel} />
     </div>
   );
 }

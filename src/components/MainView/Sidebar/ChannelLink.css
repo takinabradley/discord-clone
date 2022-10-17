@@ -8,8 +8,12 @@
 }
 
 .channel-link-wrapper:hover {
-  background-color: rgb(66, 71, 77);
+  background-color: rgb(58, 63, 68);
 
+}
+
+.channel-link-wrapper.selected {
+  background-color: rgb(66, 71, 77);
 }
 
 .channel-link-icon {
