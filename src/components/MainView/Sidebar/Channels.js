@@ -1,5 +1,6 @@
 import React from 'react'
 import ChannelLink from './ChannelLink'
+import './Channels.css'
 
 export default function Channels({ currentServer, addChannel }) {
   if(!currentServer) return

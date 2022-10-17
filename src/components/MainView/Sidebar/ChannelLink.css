@@ -1,0 +1,20 @@
+.channel-link-wrapper {
+  display: flex;
+  gap: 10px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  align-items: center;
+  font-size: 16px;
+}
+
+.channel-link-wrapper:hover {
+  background-color: rgb(66, 71, 77);
+
+}
+
+.channel-link-icon {
+  color: rgb(142, 146, 151);
+  font-style: oblique;
+  font-size: 20px;
+}
+
