@@ -13,7 +13,7 @@ export default function Channels({ currentServer, addChannel, currentChannel, ch
   return (
     <div className="channels">
       {channelLinks}
-      <button onClick={() => addChannel(currentServer, `${currentServer.channels.length + 1}`, 'text')}>+</button>
+      <button onClick={() => addChannel(currentServer, `${currentServer.channels.length + 1}`, 'text', 'channel description')}>+</button>
     </div>
   )
 }

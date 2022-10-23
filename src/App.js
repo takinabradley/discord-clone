@@ -26,8 +26,8 @@ function App() {
     })
   }
 
-  function addChannel(server, name, type) {
-    const newServer = server.addChannel(name, type)
+  function addChannel(server, name, type, description) {
+    const newServer = server.addChannel(name, type, description)
     if(newServer === undefined) return //server already had a channel by that name and type
 
     const newServers = state.servers.map(server => {

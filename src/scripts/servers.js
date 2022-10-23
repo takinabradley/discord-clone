@@ -1,6 +1,6 @@
 import uniquid from "uniquid"
 
-function Channel(name, type) {
+function Channel(name, type, description) {
   if (typeof name !== 'string' || typeof type !== 'string') return;
 
   const id = uniquid();
@@ -9,6 +9,7 @@ function Channel(name, type) {
     get name() {return name}, 
     type,
     id,
+    get description() {return description},
     get history() {return [...history]}
   })
 }
@@ -17,14 +18,14 @@ function Channel(name, type) {
 function Server(name, img) {
   const id = uniquid()
   const channels = [Channel('General', 'text')] //defaults with a general text channel
-  function addChannel(name, type) {
+  function addChannel(name, type, description) {
     if (
       channels.findIndex(
         (channel) => channel.name === name && channel.type === type
       ) !== -1
     ) return;
 
-    channels.push(Channel(name, type));
+    channels.push(Channel(name, type, description));
     return this;
   }
 
