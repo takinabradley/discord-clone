@@ -40,26 +40,30 @@ function Server(name, img) {
 
 
 const Servers = (function () {
-  const servers = []
+  const servers = {}
 
   function add(name, img) {
     const newServer = Server(name, img)
-    servers.push(newServer)
+    servers[newServer.id] = newServer
     return newServer;
   }
   
-  function fetch(id) {
-    const server = servers.find(server => server.id === id)
-    return server
+  function fetch(idArray) {
+    const fetchedServers = []
+    idArray.forEach(id => {
+      if(servers[id] !== undefined) fetchedServers.push(servers[id])
+    })
+
+    return fetchedServers
   }
 
   function remove(id) {
-    servers.splice(servers.findIndex(id))
+    delete servers[id]
     return [...servers];
   }
 
   return {
-    get list() {return [...servers]},
+    get list() {return {...servers}},
     add, 
     fetch,
     remove

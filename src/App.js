@@ -14,7 +14,7 @@ function App() {
   const [state, setState] = React.useState({
     viewMode: 'main',
     user: DefaultUser,
-    servers: DefaultUser.servers.map(serverID => Servers.fetch(serverID))
+    servers: Servers.fetch(DefaultUser.servers)
   })
 
   function addServer(name, img) {
@@ -57,9 +57,9 @@ function App() {
   }
 
   return (
-    <div className='App' /* onClick={changeViewMode} */ >
-      {views[state.viewMode]}
-    </div>
+      <div className='App' /* onClick={changeViewMode} */ >
+        {views[state.viewMode]}
+      </div>
   )
 }
 
