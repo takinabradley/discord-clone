@@ -49,9 +49,9 @@ const Servers = (function () {
   }
   
   function fetch(idArray) {
-    const fetchedServers = []
+    const fetchedServers = {}
     idArray.forEach(id => {
-      if(servers[id] !== undefined) fetchedServers.push(servers[id])
+      if(servers[id] !== undefined) fetchedServers[id] = servers[id]
     })
 
     return fetchedServers

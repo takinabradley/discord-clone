@@ -2,6 +2,7 @@ import React from 'react'
 import MainView from './components/MainView/MainView'
 import SettingsView from './components/SettingsView'
 import './App.css'
+
 import Users from './scripts/users'
 import Servers from './scripts/servers'
 import defaultImg from './images/defaultImg.png'
@@ -22,21 +23,16 @@ function App() {
     setState({
       ...state,
       user: state.user.addServer(newServer.id), 
-      servers: [...state.servers, newServer]
+      servers: { ...state.servers, [newServer.id]: newServer }
     })
   }
 
   function addChannel(server, name, type, description) {
     const newServer = server.addChannel(name, type, description)
     if(newServer === undefined) return //server already had a channel by that name and type
-
-    const newServers = state.servers.map(server => {
-      if (server.id === newServer.id) return newServer
-      return server
-    })
     setState({
       ...state,
-      servers: newServers
+      servers: {...state.servers, [newServer.id]: newServer}
     })
   }
   
@@ -60,6 +56,7 @@ function App() {
       <div className='App' /* onClick={changeViewMode} */ >
         {views[state.viewMode]}
       </div>
+
   )
 }
 

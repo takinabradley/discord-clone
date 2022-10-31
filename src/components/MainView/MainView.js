@@ -7,7 +7,7 @@ import "./MainView.css";
 
 export default function MainView({ addServer, servers, addChannel }) {
   const [state, setState] = React.useState({              
-    currentServer: servers[0].id,
+    currentServer: servers[Object.keys(servers)[0]],
     currentChannel: 0,
   });
 
@@ -32,17 +32,17 @@ export default function MainView({ addServer, servers, addChannel }) {
         onChangeServer={changeServer}
         onAddServer={addServer}
         currentServer={state.currentServer}
-        serverList={servers}
+        serverList={Object.values(servers)}
       />
 
       <Sidebar
-        currentServer={servers.find(server => state.currentServer === server.id) || 'friends'}
+        currentServer={servers[state.currentServer] || 'friends'}
         onChangeChannel={changeChannel}
         currentChannel={state.currentChannel}
         addChannel={addChannel}
       />
 
-      <Chat currentServer={servers.find(server => state.currentServer === server.id) || 'friends'} currentChannel={state.currentChannel} />
+      <Chat currentServer={servers[state.currentServer] || 'friends'} currentChannel={state.currentChannel} />
     </div>
   );
 }
