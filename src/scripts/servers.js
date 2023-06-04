@@ -6,11 +6,11 @@ function Channel(name, type, description) {
   const id = uniquid();
   const history = []
   return Object.freeze({
-    get name() {return name}, 
+    name,
     type,
     id,
-    get description() {return description},
-    get history() {return [...history]}
+    description,
+    history
   })
 }
 
@@ -18,23 +18,12 @@ function Channel(name, type, description) {
 function Server(name, img) {
   const id = uniquid()
   const channels = [Channel('General', 'text')] //defaults with a general text channel
-  function addChannel(name, type, description) {
-    if (
-      channels.findIndex(
-        (channel) => channel.name === name && channel.type === type
-      ) !== -1
-    ) return;
-
-    channels.push(Channel(name, type, description));
-    return this;
-  }
 
   return Object.freeze({
-    get name() {return name}, 
-    get img() {return img},
+    name,
+    img,
     id,
-    get channels() { return [...channels] },
-    addChannel
+    channels,
   })
 }
 
@@ -45,16 +34,25 @@ const Servers = (function () {
   function add(name, img) {
     const newServer = Server(name, img)
     servers[newServer.id] = newServer
-    return newServer;
+    return { ...newServer };
   }
   
   function fetch(idArray) {
     const fetchedServers = {}
     idArray.forEach(id => {
-      if(servers[id] !== undefined) fetchedServers[id] = servers[id]
+      if(servers[id] !== undefined) fetchedServers[id] = {...servers[id]}
     })
 
     return fetchedServers
+  }
+
+  function update(newServer) {
+    servers[newServer.id] = newServer
+    return { ...newServer }
+  }
+
+  function createChannel(name, img) {
+    return Channel(name, img)
   }
 
   function remove(id) {
@@ -66,7 +64,9 @@ const Servers = (function () {
     get list() {return {...servers}},
     add, 
     fetch,
-    remove
+    remove,
+    createChannel,
+    update
   }
 })()
 

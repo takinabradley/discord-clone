@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Chat.css'
 import addIcon from '../../images/add.svg'
 import Message from './Message.js'
 import ChatHeader from './ChatHeader'
+import { UserContext } from '../Context'
 
-export default function Chat({currentServer, currentChannel}) {
+export default function Chat({ currentServer, currentChannel }) {
+  const user = useContext(UserContext)
+  const [messageInput, setMessageInput] = React.useState('')
   if (currentServer === 'friends') return
+
   const chatHistory = currentServer.channels[currentChannel].history
   for (let i = 0; i < 100; i++) {
     chatHistory.push('chats')
@@ -13,7 +17,7 @@ export default function Chat({currentServer, currentChannel}) {
 
   const messages = chatHistory.map((message, index) => {
     const messageObj = 'chats'
-    return <Message user={null} messageObj={messageObj} key={index} />
+    return <Message user={user} messageObj={messageObj} key={index} />
   })
 
   const channelName = currentServer.channels[currentChannel].name
@@ -30,7 +34,13 @@ export default function Chat({currentServer, currentChannel}) {
       <div className='chat-textbox-parent'>
         <div className="chat-textbox-wrapper">
           <img className="chat-textbox-add" src={addIcon} alt='add' />
-          <input className="chat-textbox-input"></input>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <input
+              className="chat-textbox-input"
+              onChange={(e) => { setMessageInput(e.target.value) }}
+              value={messageInput}>
+            </input>
+          </form>
         </div>
       </div>
     </div>
