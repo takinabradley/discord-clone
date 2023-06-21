@@ -1,5 +1,5 @@
 import React from 'react'
-import './Messages.css'
+import './Message.css'
 export default function Message({ user, messageObj }) {
   const timeArray = new Date().toLocaleTimeString().split(' ')
   timeArray[0] = timeArray[0].substring(0, timeArray[0].length - 3)

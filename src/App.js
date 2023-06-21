@@ -1,6 +1,6 @@
 import React from 'react'
 import MainView from './components/MainView/MainView'
-import SettingsView from './components/SettingsView'
+import SettingsView from './components/SettingsView/SettingsView'
 import './App.css'
 
 import Users from './scripts/users'

@@ -1,29 +1,16 @@
-import React from "react";
-import Chat from "./Chat";
+import React, { useState } from "react";
 import ServerSidebar from "./ServerSidebar/ServerSidebar";
-import Sidebar from "./Sidebar/Sidebar";
 import "./MainView.css";
+import ServerView from "./ServerView/ServerView";
 
 
 export default function MainView({ addServer, servers, addChannel }) {
-  const [state, setState] = React.useState({              
-    currentServer: servers[Object.keys(servers)[0]],
-    currentChannel: 0,
-  });
+  const [currentServer, setCurrentServer] = useState(servers[Object.keys(servers)[0]])
+  const [rerenderKey, setRerenderKey] = useState(0)
 
   function changeServer(ID) {
-    setState({
-      currentServer: ID,
-      currentChannel: 0,
-    });
-  }
-
-  function changeChannel(ID) {
-    console.log(ID)
-    setState({
-      ...state,
-      currentChannel: ID,
-    });
+    setCurrentServer(ID)
+    setRerenderKey(key => ++key)
   }
 
   return (
@@ -31,18 +18,11 @@ export default function MainView({ addServer, servers, addChannel }) {
       <ServerSidebar
         onChangeServer={changeServer}
         onAddServer={addServer}
-        currentServer={state.currentServer}
+        currentServer={currentServer}
         serverList={Object.values(servers)}
       />
 
-      <Sidebar
-        currentServer={servers[state.currentServer] || 'friends'}
-        onChangeChannel={changeChannel}
-        currentChannel={state.currentChannel}
-        addChannel={addChannel}
-      />
-
-      <Chat currentServer={servers[state.currentServer] || 'friends'} currentChannel={state.currentChannel} />
+      <ServerView currentServer={servers[currentServer] || 'friends'} addChannel={addChannel} key={rerenderKey}/>
     </div>
   );
 }

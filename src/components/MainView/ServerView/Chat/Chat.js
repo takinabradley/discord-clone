@@ -1,6 +1,6 @@
 import React from 'react'
 import './Chat.css'
-import addIcon from '../../images/add.svg'
+import addIcon from '../../../../images/add.svg'
 import Message from './Message.js'
 import ChatHeader from './ChatHeader'
 
