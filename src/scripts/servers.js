@@ -1,43 +1,54 @@
 import uniquid from "uniquid"
 
 function Channel(name, type, description) {
-  if (typeof name !== 'string' || typeof type !== 'string') return;
+  if (typeof name !== "string" || typeof type !== "string") return
 
-  const id = uniquid();
+  const id = uniquid()
   const history = []
   return Object.freeze({
-    get name() {return name}, 
+    get name() {
+      return name
+    },
     type,
     id,
-    get description() {return description},
-    get history() {return [...history]}
+    get description() {
+      return description
+    },
+    get history() {
+      return [...history]
+    }
   })
 }
 
-
 function Server(name, img) {
   const id = uniquid()
-  const channels = [Channel('General', 'text')] //defaults with a general text channel
+  const channels = [Channel("General", "text")] //defaults with a general text channel
   function addChannel(name, type, description) {
     if (
       channels.findIndex(
         (channel) => channel.name === name && channel.type === type
       ) !== -1
-    ) return;
+    )
+      return
 
-    channels.push(Channel(name, type, description));
-    return this;
+    channels.push(Channel(name, type, description))
+    return this
   }
 
   return Object.freeze({
-    get name() {return name}, 
-    get img() {return img},
+    get name() {
+      return name
+    },
+    get img() {
+      return img
+    },
     id,
-    get channels() { return [...channels] },
+    get channels() {
+      return [...channels]
+    },
     addChannel
   })
 }
-
 
 const Servers = (function () {
   const servers = {}
@@ -45,13 +56,13 @@ const Servers = (function () {
   function add(name, img) {
     const newServer = Server(name, img)
     servers[newServer.id] = newServer
-    return newServer;
+    return newServer
   }
-  
+
   function fetch(idArray) {
     const fetchedServers = {}
-    idArray.forEach(id => {
-      if(servers[id] !== undefined) fetchedServers[id] = servers[id]
+    idArray.forEach((id) => {
+      if (servers[id] !== undefined) fetchedServers[id] = servers[id]
     })
 
     return fetchedServers
@@ -59,17 +70,18 @@ const Servers = (function () {
 
   function remove(id) {
     delete servers[id]
-    return [...servers];
+    return [...servers]
   }
 
   return {
-    get list() {return {...servers}},
-    add, 
+    get list() {
+      return { ...servers }
+    },
+    add,
     fetch,
     remove
   }
 })()
-
 
 /* function cloneServer(server) {
   return {
