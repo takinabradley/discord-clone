@@ -3,17 +3,27 @@ import uniquid from "uniquid"
 function User(name) {
   const id = uniquid()
   const servers = []
+  const aliases = {}
 
   function addServer(serverID) {
-    if (servers.includes(serverID) || typeof serverID !== 'string') return
+    if (servers.includes(serverID) || typeof serverID !== "string") return
     servers.push(serverID)
-    return this;
+    return this
   }
 
   return Object.freeze({
-    get name() { return name },
-    get id() {return id},
-    get servers() { return [...servers] },
+    get name() {
+      return name
+    },
+    get aliases() {
+      return aliases
+    },
+    get id() {
+      return id
+    },
+    get servers() {
+      return [...servers]
+    },
     addServer
   })
 }
@@ -28,14 +38,16 @@ const Users = (function Users() {
   }
 
   function find(id) {
-    return users.find(user => user.id === id)
+    return users.find((user) => user.id === id)
   }
 
   return Object.freeze({
-    get list() {return [...users]},
+    get list() {
+      return [...users]
+    },
     add,
     find
   })
 })()
 
-export default Users;
+export default Users

@@ -20,7 +20,10 @@ export default function MainView({ addServer, servers, addChannel }) {
         serverList={Object.values(servers)}
       />
 
-      <ServerView currentServer={servers[currentServer] || 'friends'} addChannel={addChannel}/>
+      <ServerView 
+        currentServer={servers[currentServer] || 'friends'} 
+        addChannel={addChannel}
+      />
     </div>
   );
 }
